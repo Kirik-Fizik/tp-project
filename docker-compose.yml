@@ -43,10 +43,24 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+    environment:
+      REACT_APP_API_URL: http://localhost:8000
     ports:
       - "3000:80"
     depends_on:
       - backend
+
+  test:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: pytest -v
+    environment:
+      PYTHONPATH: /app
+    volumes:
+      - ./backend:/app
+    profiles:
+      - test
 
 volumes:
   postgres_data:
