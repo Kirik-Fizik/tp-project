@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
-import { Link } from 'react-router-dom';
 import authStore from '../../stores/authStore';
 import projectStore from '../../stores/projectStore';
+import Header from '../Header/Header';
 import AddProjectModal from '../Projects/AddProjectModal';
+import AuthModal from '../Auth/AuthModal';
 import ProjectCard from '../Projects/ProjectCard';
 import './HomePage.css';
+import image from './i.webp';
 
 const HomePage = observer(() => {
   const [showAddProjectModal, setShowAddProjectModal] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [authMode, setAuthMode] = useState('login');
 
   useEffect(() => {
     projectStore.fetchProjects();
@@ -16,122 +20,122 @@ const HomePage = observer(() => {
 
   const handleAddProjectClick = () => {
     if (!authStore.isAuthenticated) {
+      setAuthMode('register');
+      setShowAuthModal(true);
       return;
     }
     setShowAddProjectModal(true);
+  };
+
+  const handleSignIn = () => {
+    setAuthMode('login');
+    setShowAuthModal(true);
+  };
+
+  const handleSignUp = () => {
+    setAuthMode('register');
+    setShowAuthModal(true);
   };
 
   const handleProjectAdded = () => {
     projectStore.fetchProjects();
   };
 
+  const handleAuthSuccess = () => {
+    setShowAuthModal(false);
+    projectStore.fetchProjects();
+  };
+
   return (
     <div className="home-page">
-      <header className="home-header">
-        <div className="header-content">
-          <h1>Startup Flow</h1>
-          <div className="header-actions">
-            {authStore.isAuthenticated ? (
-              <div className="user-section">
-                <span>Welcome, {authStore.user?.username}!</span>
-                <Link to="/profile" className="btn profile-btn">Profile</Link>
-                <button 
-                  onClick={() => authStore.logout()}
-                  className="btn logout-btn"
-                >
-                  Logout
-                </button>
-              </div>
-            ) : (
-              <div className="auth-buttons">
-                <Link to="/login" className="btn login-btn">Login</Link>
-                <Link to="/register" className="btn register-btn">Register</Link>
-              </div>
-            )}
-          </div>
-        </div>
-      </header>
+      <Header 
+        onAddProject={handleAddProjectClick}
+        onSignIn={handleSignIn}
+        onSignUp={handleSignUp}
+      />
 
       <main className="home-main">
         <div className="hero-section">
-          <h2>Discover Amazing Startup Projects</h2>
-          <p>Find innovative solutions and connect with creators</p>
-        </div>
-
-        <div className="actions-section">
-          <div className="action-cards">
-            <div className="action-card">
-              <h3>Browse Projects</h3>
-              <p>Explore the latest startup innovations</p>
-              <button className="action-btn">View All Projects</button>
+          <div className="hero-text">
+            <div>платформа, где стартаперы могут получить фидбеки и найти первых клиентов</div>
+          </div>
+          
+          <div className="hero-images">
+            <div className="hero-image-container top-image">
+              <img src={image} alt="Project preview" />
             </div>
-
-            <div className="action-card">
-              <h3>Top Rated</h3>
-              <p>See the most popular projects</p>
-              <button className="action-btn">See Rankings</button>
-            </div>
-
-            {authStore.isAuthenticated && (
-              <>
-                <div className="action-card">
-                  <h3>Add Project</h3>
-                  <p>Share your own startup with the community</p>
-                  <button 
-                    className="action-btn primary"
-                    onClick={handleAddProjectClick}
-                  >
-                    Create Project
-                  </button>
-                </div>
-                <div className="action-card">
-                  <h3>Analytics</h3>
-                  <p>Track your project performance</p>
-                  <button className="action-btn">View Stats</button>
-                </div>
-              </>
-            )}
           </div>
         </div>
 
-        <div className="projects-section">
-          <h2>Latest Projects</h2>
-          <div className="projects-grid">
-            {projectStore.projects.map(project => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
-          </div>
-          {projectStore.projects.length === 0 && (
-            <div className="empty-projects">
-              <p>No projects yet. Be the first to share your startup!</p>
-              {authStore.isAuthenticated && (
+        {authStore.isAuthenticated && (
+          <div className="projects-section">
+            <h2>Последние проекты</h2>
+            <div className="projects-grid">
+              {projectStore.projects.map(project => (
+                <ProjectCard 
+                  key={project.id} 
+                  project={project} 
+                  onUpdate={() => projectStore.fetchProjects()}
+                />
+              ))}
+            </div>
+            {projectStore.projects.length === 0 && (
+              <div className="empty-projects">
+                <p>Проектов пока нет. Будьте первым!</p>
                 <button 
-                  className="btn primary"
+                  className="btn-green-outline"
                   onClick={handleAddProjectClick}
                 >
-                  Add First Project
+                  Добавить проект
                 </button>
-              )}
-            </div>
-          )}
-        </div>
-
-        {!authStore.isAuthenticated && (
-          <div className="cta-section">
-            <h3>Ready to join the community?</h3>
-            <p>Register now to share your projects and connect with others</p>
-            <div className="cta-buttons">
-              <Link to="/register" className="btn primary large">Get Started</Link>
-              <Link to="/login" className="btn secondary large">Sign In</Link>
-            </div>
+              </div>
+            )}
           </div>
         )}
       </main>
+
+      <footer className="home-footer">
+        <div className="footer-buttons">
+          {authStore.isAuthenticated ? (
+            <>
+              <button className="btn-green-outline" onClick={() => authStore.logout()}>
+                Выйти
+              </button>
+              <div className="footer-divider">
+                <img src="/Pipe_fill.svg" alt="" className="chevron-icon" />
+              </div>
+              <button className="btn-green-outline" onClick={handleAddProjectClick}>
+                Добавить проект
+              </button>
+            </>
+          ) : (
+            <>
+              <button className="btn-green-outline" onClick={handleSignIn}>
+                Sign In
+              </button>
+              <div className="footer-divider">
+                <img src="/Pipe_fill.svg" alt="" className="chevron-icon" />
+              </div>
+              <button className="btn-green-outline" onClick={handleSignUp}>
+                Sign Up
+              </button>
+            </>
+          )}
+        </div>
+      </footer>
 
       <AddProjectModal
         isOpen={showAddProjectModal}
         onClose={() => setShowAddProjectModal(false)}
         onSuccess={handleProjectAdded}
+      />
+
+      <AuthModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+        mode={authMode}
+        onModeChange={setAuthMode}
+        onSuccess={handleAuthSuccess}
       />
     </div>
   );

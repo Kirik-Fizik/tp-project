@@ -1,0 +1,176 @@
+.project-card {
+  background: var(--bg-secondary);
+  border: 1px solid #222;
+  border-radius: 12px;
+  padding: 24px;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover {
+  border-color: var(--accent-green);
+  transform: translateY(-2px);
+}
+
+.project-header {
+  margin-bottom: 16px;
+}
+
+.project-title {
+  color: var(--text-primary);
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+}
+
+.project-author {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.project-description {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.project-stats {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding: 12px 0;
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.stat-icon {
+  font-size: 16px;
+}
+
+.project-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.like-btn,
+.review-btn,
+.reviews-toggle {
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: 1px solid #333;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.like-btn:hover,
+.review-btn:hover,
+.reviews-toggle:hover {
+  border-color: var(--accent-green);
+  color: var(--accent-green);
+}
+
+.like-btn.liked {
+  background: rgba(255, 68, 102, 0.1);
+  border-color: var(--accent-red);
+  color: var(--accent-red);
+}
+
+.review-btn {
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+.reviews-toggle {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.project-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.project-link {
+  color: var(--accent-blue);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.project-link:hover {
+  text-decoration: underline;
+}
+
+.project-date {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.reviews-section {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #333;
+}
+
+.reviews-section h4 {
+  color: var(--text-primary);
+  margin: 0 0 16px 0;
+  font-size: 16px;
+}
+
+.no-reviews {
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 14px;
+}
+
+.review-item {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #333;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.review-author {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+.review-rating {
+  font-size: 14px;
+  color: var(--accent-green);
+}
+
+.review-content {
+  color: var(--text-secondary);
+  margin: 0 0 8px 0;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.review-date {
+  color: var(--text-muted);
+  font-size: 12px;
+}

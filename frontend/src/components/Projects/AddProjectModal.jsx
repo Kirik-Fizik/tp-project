@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import projectStore from '../../stores/projectStore';
-import Input from '../UI/Input';
-import Button from '../UI/Button';
+import './AddProjectModal.css';
 
 const AddProjectModal = observer(({ isOpen, onClose, onSuccess }) => {
   const [formData, setFormData] = useState({
@@ -27,57 +26,69 @@ const AddProjectModal = observer(({ isOpen, onClose, onSuccess }) => {
     }
   };
 
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-header">
-          <h2>Add New Project</h2>
-          <button className="close-btn" onClick={onClose}>×</button>
-        </div>
+    <div className="project-modal-overlay" onClick={handleOverlayClick}>
+      <div className="project-modal">
+        <button className="close-button" onClick={onClose}>
+          <img src="/Close_round.svg" alt="Close" />
+        </button>
 
         <form onSubmit={handleSubmit} className="project-form">
-          <Input
-            label="Project Title"
-            value={formData.title}
-            onChange={handleChange('title')}
-            placeholder="Enter project name"
-            required
-          />
-          
-          <div className="input-group">
-            <label>Description</label>
-            <textarea
-              value={formData.description}
-              onChange={handleChange('description')}
-              placeholder="Describe your project..."
-              rows="4"
+          <div className="form-group">
+            <label className="form-label">Название проекта</label>
+            <input
+              type="text"
+              className="input-field"
+              value={formData.title}
+              onChange={handleChange('title')}
               required
+              disabled={projectStore.isLoading}
             />
           </div>
 
-          <Input
-            label="Project URL"
-            type="url"
-            value={formData.projectUrl}
-            onChange={handleChange('projectUrl')}
-            placeholder="https://your-project.com"
-            required
-          />
+          <div className="form-group">
+            <label className="form-label">Описание</label>
+            <textarea
+              className="textarea-field"
+              value={formData.description}
+              onChange={handleChange('description')}
+              rows="4"
+              required
+              disabled={projectStore.isLoading}
+            />
+          </div>
+
+          <div className="form-group">
+            <label className="form-label">Ссылка</label>
+            <input
+              type="url"
+              className="input-field"
+              value={formData.projectUrl}
+              onChange={handleChange('projectUrl')}
+              required
+              disabled={projectStore.isLoading}
+            />
+          </div>
 
           {projectStore.error && (
             <div className="error-message">{projectStore.error}</div>
           )}
 
-          <div className="form-actions">
-            <Button type="button" onClick={onClose} className="secondary">
-              Cancel
-            </Button>
-            <Button type="submit" loading={projectStore.isLoading}>
-              Add Project
-            </Button>
-          </div>
+          <button 
+            type="submit" 
+            className="submit-button"
+            disabled={projectStore.isLoading}
+          >
+            {projectStore.isLoading ? '...' : 'OK'}
+          </button>
         </form>
       </div>
     </div>
