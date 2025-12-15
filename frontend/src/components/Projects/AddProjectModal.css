@@ -1,0 +1,132 @@
+.project-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.project-modal {
+  position: relative;
+  background: rgba(20, 20, 20, 0.95);
+  border-radius: 12px;
+  padding: 40px 50px;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid #333;
+}
+
+.project-modal .close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-modal .close-button img {
+  width: 24px;
+  height: 24px;
+  filter: invert(52%) sepia(98%) saturate(1234%) hue-rotate(166deg) brightness(104%) contrast(101%);
+}
+
+.project-modal .close-button:hover img {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+}
+
+.project-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.project-modal .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.project-modal .form-label {
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.project-modal .input-field {
+  width: 100%;
+  padding: 14px 20px;
+  background: var(--input-bg);
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  color: var(--input-text);
+  outline: none;
+}
+
+.project-modal .input-field:focus {
+  box-shadow: 0 0 0 2px var(--accent-green);
+}
+
+.project-modal .textarea-field {
+  width: 100%;
+  padding: 14px 20px;
+  background: var(--input-bg);
+  border: none;
+  border-radius: 15px;
+  font-size: 16px;
+  color: var(--input-text);
+  outline: none;
+  resize: vertical;
+  min-height: 120px;
+  font-family: inherit;
+}
+
+.project-modal .textarea-field:focus {
+  box-shadow: 0 0 0 2px var(--accent-green);
+}
+
+.project-modal .submit-button {
+  background: transparent;
+  border: 2px solid var(--accent-green);
+  color: var(--accent-green);
+  padding: 12px 48px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  align-self: center;
+}
+
+.project-modal .submit-button:hover:not(:disabled) {
+  background: var(--accent-green);
+  color: var(--bg-primary);
+}
+
+.project-modal .submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.project-modal .error-message {
+  color: var(--accent-red);
+  font-size: 14px;
+  text-align: center;
+  padding: 10px;
+  background: rgba(255, 68, 102, 0.1);
+  border-radius: 6px;
+}

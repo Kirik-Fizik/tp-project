@@ -1,0 +1,158 @@
+.home-page {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 80px;
+}
+
+.hero-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 60px;
+  position: relative;
+}
+
+.hero-text {
+  flex: 1;
+  padding-right: -2em;
+  padding-left: 1em;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.hero-text div {
+  font-family: 'Inter', sans-serif;
+  font-size: 42px;
+  font-weight: 300;
+  line-height: 1.3;
+  color: var(--text-primary);
+  text-transform: lowercase;
+}
+
+.hero-images {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.hero-image-container {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.hero-image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.top-image {
+  transform: translateX(50px);
+}
+
+.home-footer {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-buttons {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.footer-divider {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.chevron-icon {
+  width: 30px;
+  height: 30px;
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+}
+
+.projects-section {
+  padding: 40px 60px;
+}
+
+.projects-section h2 {
+  color: var(--text-primary);
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.empty-projects {
+  text-align: center;
+  padding: 60px;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  border: 1px solid #222;
+}
+
+.empty-projects p {
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+@media (max-width: 1024px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 20px;
+  }
+  
+  .hero-text {
+    max-width: 100%;
+    margin-bottom: 40px;
+  }
+  
+  .hero-text h1 {
+    font-size: 28px;
+  }
+  
+  .hero-images {
+    width: 100%;
+    height: auto;
+    align-items: center;
+  }
+  
+  .top-image,
+  .bottom-image {
+    transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-buttons {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .footer-divider {
+    transform: rotate(90deg);
+  }
+}

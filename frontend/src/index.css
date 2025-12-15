@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-primary: #000000;
+  --bg-secondary: #0a0a0a;
+  --bg-modal: rgba(0, 0, 0, 0.85);
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --text-muted: #888888;
+  --accent-green: #00ff00;
+  --accent-green-dark: #00cc00;
+  --accent-blue: #00bfff;
+  --accent-red: #ff4466;
+  --border-green: #00ff00;
+  --input-bg: #e8e8e8;
+  --input-text: #333333;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+input, textarea {
+  font-family: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.btn-green-outline {
+  background-color: #0B5B00;
+  border: none;
+  font-size: 2em;
+  border-radius: .5em;
+  padding: .1em 1em;
+}
+
+.btn-green-outline:hover {
+  background: var(--accent-green);
+  color: var(--bg-primary);
+}
+
+.btn-green-filled {
+  background: transparent;
+  border: 2px solid var(--accent-green);
+  color: var(--accent-green);
+  padding: 10px 32px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-green-filled:hover {
+  background: var(--accent-green);
+  color: var(--bg-primary);
+}
+
+.input-field {
+  width: 100%;
+  padding: 14px 20px;
+  background: var(--input-bg);
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  color: var(--input-text);
+  outline: none;
+}
+
+.input-field:focus {
+  box-shadow: 0 0 0 2px var(--accent-green);
+}
+
+.textarea-field {
+  width: 100%;
+  padding: 14px 20px;
+  background: var(--input-bg);
+  border: none;
+  border-radius: 15px;
+  font-size: 16px;
+  color: var(--input-text);
+  outline: none;
+  resize: vertical;
+  min-height: 120px;
+}
+
+.textarea-field:focus {
+  box-shadow: 0 0 0 2px var(--accent-green);
+}
+
+.label {
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 8px;
+  display: block;
+}
