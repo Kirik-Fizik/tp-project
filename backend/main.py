@@ -10,6 +10,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from database.connection import engine, Base
 from auth.router import router as auth_router
 from projects.router import router as projects_router
+from profiling.middleware import ProfilingMiddleware
+from profiling.router import router as profiling_router
 from config import settings
 
 Base.metadata.create_all(bind=engine)
@@ -29,8 +31,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.add_middleware(ProfilingMiddleware)
+
 app.include_router(auth_router)
 app.include_router(projects_router)
+app.include_router(profiling_router)
 
 
 @app.get("/")
